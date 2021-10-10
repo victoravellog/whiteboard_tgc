@@ -27,3 +27,4 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
         RAILS_ENV: test
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
+        BUILDPACK_URL: https://github.com/heroku/heroku-buildpack-ruby.git
