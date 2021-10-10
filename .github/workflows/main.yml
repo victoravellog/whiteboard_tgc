@@ -1,32 +1,38 @@
-name: CI
-on: [push, pull_request]
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: app_test
-          POSTGRES_PASSWORD: password
-        ports:
-          - "5432:5432"
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+# Your workflow name.
+name: Deploy to heroku.
 
+# Run workflow on every push to master branch.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Your workflows jobs.
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
-    - name: Clone code repo
-      uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
-    - run: bundle lock --add-platform x86_64-linux
-    - name: Build and run unit tests with Buildpack CI
-      uses: buildpack-ci/run-tests@v1
-      env:
-        DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
-        RAILS_ENV: test
-        DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
-        BUILDPACK_URL: https://github.com/heroku/heroku-buildpack-ruby.git
+      # Check-out your repository.
+      - name: Checkout
+        uses: actions/checkout@v2
+
+
+### ⬇ IMPORTANT PART ⬇ ###
+
+      - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
+        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+        with:
+          # Below you must provide variables for your Heroku app.
+
+          # The email address associated with your Heroku account.
+          # If you don't want to use repository secrets (which is recommended) you can do:
+          # email: my.email@example.com
+          email: ${{ secrets.HEROKU_EMAIL }}
+          
+          # Heroku API key associated with provided user's email.
+          # Api Key is available under your Heroku account settings.
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          
+          # Name of the heroku application to which the build is to be sent.
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
