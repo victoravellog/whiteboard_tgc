@@ -1,5 +1,15 @@
 <div class="container mt-4 border">
   <div class="container-content">
+    <p class="navbar-text float-right">
+      <% if user_signed_in? %>
+        Inició sesión como <strong><%= current_user.email %></strong>.
+        <%= link_to 'Editar usuario', edit_user_registration_path, :class => 'navbar-link' %> |
+        <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+        <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to "Iniciar sesión", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+    </p>
     <h1 class="m-3">Whiteboard TGC</h1> 
     <div class="container-fluid m-3">
       <div class="row board-container">

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :raza_personajes
   resources :tipo_personajes
   resources :personajes
