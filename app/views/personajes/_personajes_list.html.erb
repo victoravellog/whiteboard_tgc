@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+        <tr>
+        <th>Poder</th>
+        <th>Ataque</th>
+        <th>Defensa</th>
+        <th>Carisma</th>
+        <th>Espiritu</th>
+        <th>Habilidad especial</th>
+        <th>Raza</th>
+        <th>Tipo</th>
+        <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @personajes.each do |personaje| %>
+        <tr>
+            <td><%= personaje.poder %></td>
+            <td><%= personaje.ataque %></td>
+            <td><%= personaje.defensa %></td>
+            <td><%= personaje.carisma %></td>
+            <td><%= personaje.espiritu %></td>
+            <td><%= personaje.habilidad_especial.titleize %></td>
+            <td><%= personaje.raza_personaje.descripcion %></td>
+            <td><%= personaje.tipo_personaje.descripcion %></td>
+            <td><%= link_to 'Ver', personaje %></td>
+            <td><%= link_to 'Editar', edit_personaje_path(personaje) %></td>
+            <td><%= link_to 'Eliminar', personaje, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -19,4 +19,5 @@ class Personaje < ApplicationRecord
 
   belongs_to :tipo_personaje
   belongs_to :raza_personaje
+  belongs_to :user, optional: true
 end

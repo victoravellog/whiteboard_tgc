@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_194807) do
+ActiveRecord::Schema.define(version: 2021_10_11_213709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,12 @@ ActiveRecord::Schema.define(version: 2021_10_11_194807) do
     t.integer "habilidad_especial", default: 0
     t.bigint "raza_personaje_id", null: false
     t.bigint "tipo_personaje_id", null: false
+    t.bigint "user_id"
+    t.string "visitor_token"
     t.index ["habilidad_especial_id"], name: "index_personajes_on_habilidad_especial_id"
     t.index ["raza_personaje_id"], name: "index_personajes_on_raza_personaje_id"
     t.index ["tipo_personaje_id"], name: "index_personajes_on_tipo_personaje_id"
+    t.index ["user_id"], name: "index_personajes_on_user_id"
   end
 
   create_table "raza_personajes", force: :cascade do |t|
@@ -58,4 +61,5 @@ ActiveRecord::Schema.define(version: 2021_10_11_194807) do
 
   add_foreign_key "personajes", "raza_personajes"
   add_foreign_key "personajes", "tipo_personajes"
+  add_foreign_key "personajes", "users"
 end

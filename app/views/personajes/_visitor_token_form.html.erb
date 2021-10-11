@@ -1,0 +1,11 @@
+<p>Para poder ver su personaje ingrese el token de visitante enviado a su correo</p>
+<%= form_with url: validate_visitor_token_path, method: :post do |f| %>
+  <div class="field">
+    <%= f.label :visitor_token %><br />
+    <%= f.text_field :visitor_token, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Validar", class: "btn btn-sm btn-secondary" %>
+  </div>
+<% end %>

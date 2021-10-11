@@ -6,7 +6,6 @@ class CreatePersonajes < ActiveRecord::Migration[6.1]
       t.integer :defensa
       t.integer :carisma
       t.integer :espiritu
-      t.references :habilidad_especial, null: false, foreign_key: true
 
       t.timestamps
     end
