@@ -37,13 +37,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :habilidad_especial %>
+    <%= form.select(:habilidad_especial, options_for_select(Personaje.habilidad_especials.map {|key, value| [key.humanize, key]}, personaje.habilidad_especial),{prompt: true}) %>
+  </div>
+
+  <div class="field">
     <%= form.label :raza_personaje %>
-    <%= form.collection_select(:raza_personaje_id, @razas, :id, :descripcion) %>
+    <%= form.collection_select(:raza_personaje_id, @razas, :id, :descripcion, prompt: true) %>
   </div>
 
   <div class="field">
     <%= form.label :tipo_personaje %>
-    <%= form.collection_select(:tipo_personaje_id, @tipos, :id, :descripcion) %>
+    <%= form.collection_select(:tipo_personaje_id, @tipos, :id, :descripcion, prompt: true) %>
   </div>
 
   <div class="actions">

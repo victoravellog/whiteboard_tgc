@@ -27,7 +27,17 @@
 
 <p>
   <strong>Habilidad especial:</strong>
-  <%= @personaje.habilidad_especial_id %>
+  <%= @personaje.habilidad_especial.titleize %>
+</p>
+
+<p>
+  <strong>Raza:</strong>
+  <%= @personaje.raza_personaje.descripcion %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @personaje.tipo_personaje.descripcion %>
 </p>
 
 <%= link_to 'Edit', edit_personaje_path(@personaje) %> |

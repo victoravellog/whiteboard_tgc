@@ -1,5 +1,6 @@
 class PersonajesController < ApplicationController
   before_action :set_personaje, only: %i[ show edit update destroy ]
+  before_action :set_select_collections, only: [:edit, :update, :new, :create]
 
   # GET /personajes or /personajes.json
   def index
@@ -12,8 +13,6 @@ class PersonajesController < ApplicationController
 
   # GET /personajes/new
   def new
-    @razas = RazaPersonaje::all
-    @tipos = TipoPersonaje::all
     @personaje = Personaje.new
   end
 
@@ -64,8 +63,13 @@ class PersonajesController < ApplicationController
       @personaje = Personaje.find(params[:id])
     end
 
+    def set_select_collections
+      @razas = RazaPersonaje::all
+      @tipos = TipoPersonaje::all
+    end
+
     # Only allow a list of trusted parameters through.
     def personaje_params
-      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial_id)
+      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id)
     end
 end

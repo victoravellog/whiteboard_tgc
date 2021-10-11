@@ -1,12 +1,12 @@
 class Personaje < ApplicationRecord
   enum habilidad_especial: {
-    "resistencia al fuego" => 0,
-    "resistencia al frío" => 1,
-    "resistencia al veneno" => 2,
-    "resistencia a la oscuridad" => 3,
-    "movimiento acelerado" => 4,
-    "crecimiento acelerado" => 5,
-    "invocación de familiar" => 6
+    resistencia_al_fuego: 0, 
+    resistencia_al_frío: 1, 
+    resistencia_al_veneno: 2, 
+    resistencia_a_la_oscuridad: 3, 
+    movimiento_acelerado: 4, 
+    crecimiento_acelerado: 5, 
+    invocación_de_familiar: 6
   }, _prefix: true
 
   validates :poder, presence: true, :inclusion => 100..1000

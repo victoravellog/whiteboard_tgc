@@ -25,9 +25,9 @@
         <td><%= personaje.defensa %></td>
         <td><%= personaje.carisma %></td>
         <td><%= personaje.espiritu %></td>
-        <td><%= personaje.habilidad_especial_id %></td>
-        <td><%= personaje.raza_id %></td>
-        <td><%= personaje.tipo_id %></td>
+        <td><%= personaje.habilidad_especial.titleize %></td>
+        <td><%= personaje.raza_personaje.descripcion %></td>
+        <td><%= personaje.tipo_personaje.descripcion %></td>
         <td><%= link_to 'Show', personaje %></td>
         <td><%= link_to 'Edit', edit_personaje_path(personaje) %></td>
         <td><%= link_to 'Destroy', personaje, method: :delete, data: { confirm: 'Are you sure?' } %></td>
