@@ -1,0 +1,24 @@
+<%= form_with(model: tipo_personaje) do |form| %>
+  <% if tipo_personaje.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tipo_personaje.errors.count, "error") %> no puedes guardar este elemento:</h2>
+
+      <ul>
+        <% tipo_personaje.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= form.label :descripcion, { class: "form-label" } %>
+        <%= form.text_field :descripcion, { class: "form-control" } %>
+      </div>
+
+      <%= form.submit "Guardar", { class: "btn btn-primary" } %>
+    </div>
+  </div>
+<% end %>

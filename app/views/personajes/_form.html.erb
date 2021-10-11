@@ -1,0 +1,57 @@
+<%= form_with(model: personaje) do |form| %>
+  <% if personaje.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(personaje.errors.count, "error") %> prohibited this personaje from being saved:</h2>
+
+      <ul>
+        <% personaje.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :poder %>
+    <%= form.number_field :poder %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ataque %>
+    <%= form.number_field :ataque %>
+  </div>
+
+  <div class="field">
+    <%= form.label :defensa %>
+    <%= form.number_field :defensa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :carisma %>
+    <%= form.number_field :carisma %>
+  </div>
+
+  <div class="field">
+    <%= form.label :espiritu %>
+    <%= form.number_field :espiritu %>
+  </div>
+
+  <div class="field">
+    <%= form.label :habilidad_especial %>
+    <%= form.select(:habilidad_especial, options_for_select(Personaje.habilidad_especials.map {|key, value| [key.humanize, key]}, personaje.habilidad_especial),{prompt: true}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :raza_personaje %>
+    <%= form.collection_select(:raza_personaje_id, @razas, :id, :descripcion, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_personaje %>
+    <%= form.collection_select(:tipo_personaje_id, @tipos, :id, :descripcion, prompt: true) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

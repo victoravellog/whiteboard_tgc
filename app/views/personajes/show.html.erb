@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Poder:</strong>
+  <%= @personaje.poder %>
+</p>
+
+<p>
+  <strong>Ataque:</strong>
+  <%= @personaje.ataque %>
+</p>
+
+<p>
+  <strong>Defensa:</strong>
+  <%= @personaje.defensa %>
+</p>
+
+<p>
+  <strong>Carisma:</strong>
+  <%= @personaje.carisma %>
+</p>
+
+<p>
+  <strong>Espiritu:</strong>
+  <%= @personaje.espiritu %>
+</p>
+
+<p>
+  <strong>Habilidad especial:</strong>
+  <%= @personaje.habilidad_especial.titleize %>
+</p>
+
+<p>
+  <strong>Raza:</strong>
+  <%= @personaje.raza_personaje.descripcion %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @personaje.tipo_personaje.descripcion %>
+</p>
+
+<%= link_to 'Edit', edit_personaje_path(@personaje) %> |
+<%= link_to 'Back', personajes_path %>
