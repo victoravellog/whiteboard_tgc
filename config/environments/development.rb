@@ -79,7 +79,7 @@ Rails.application.configure do
       port:                  465,
       domain:               'gmail.com',
       user_name:            'victoravellog',
-      password:             '68354563',
+      password:             'password',
       authentication:       'plain',
       enable_starttls_auto: true,
       ssl: true
