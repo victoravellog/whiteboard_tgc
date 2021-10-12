@@ -88,6 +88,6 @@ class PersonajesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def personaje_params
-      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id, :visitor_token)
+      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id, :visitor_token, :nombre, :imagen, :historia)
     end
 end

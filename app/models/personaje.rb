@@ -9,15 +9,28 @@ class Personaje < ApplicationRecord
     invocación_de_familiar: 6
   }, _prefix: true
 
+  has_one_attached :imagen
+
   validates :poder, presence: true, :inclusion => 100..1000
   validates :ataque, presence: true, :inclusion => 100..1000
   validates :defensa, presence: true, :inclusion => 100..1000
   validates :carisma, presence: true, :inclusion => 100..1000
   validates :espiritu, presence: true, :inclusion => 100..1000
   validates :habilidad_especial, inclusion: { in: habilidad_especials.keys }
+  validates :nombre, presence: :true, uniqueness:  true
+  validates :historia, presence: :true
+
+  validate :puntos_por_personaje_validator
 
 
   belongs_to :tipo_personaje
   belongs_to :raza_personaje
   belongs_to :user, optional: true
+
+  def puntos_por_personaje_validator
+    suma_puntaje = poder+ataque+defensa+carisma+espiritu
+    errors.add(:base, "La suma de los puntajes no puede superar los 2000 puntos, el personaje está excedido en #{suma_puntaje-2000} puntos.") if suma_puntaje > 2000
+    errors.add(:base, "La suma de los puntajes debe ser exactamente 2000 puntos, el personaje está falto de #{2000-suma_puntaje} puntos.") if suma_puntaje < 2000
+  end
+  
 end
