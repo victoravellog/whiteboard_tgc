@@ -8,7 +8,12 @@ class Personaje < ApplicationRecord
     movimiento_acelerado: 4, 
     crecimiento_acelerado: 5, 
     invocación_de_familiar: 6
-  }, _prefix: true
+  }, _prefix: :habilidad
+
+  enum public_status: {
+    privado: 0, 
+    publico: 1
+  }, _suffix: true
 
   has_one_attached :imagen
 
@@ -17,7 +22,6 @@ class Personaje < ApplicationRecord
   validates :defensa, presence: true, :inclusion => 100..1000
   validates :carisma, presence: true, :inclusion => 100..1000
   validates :espiritu, presence: true, :inclusion => 100..1000
-  validates :habilidad_especial, inclusion: { in: habilidad_especials.keys }
   validates :nombre, presence: :true, uniqueness:  true
   validates :historia, presence: :true
 

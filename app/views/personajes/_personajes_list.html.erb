@@ -1,6 +1,7 @@
 <table class="table">
     <thead>
         <tr>
+        <th>Nombre</th>
         <th>Poder</th>
         <th>Ataque</th>
         <th>Defensa</th>
@@ -9,6 +10,7 @@
         <th>Habilidad especial</th>
         <th>Raza</th>
         <th>Tipo</th>
+        <th>Estado</th>
         <th colspan="3"></th>
         </tr>
     </thead>
@@ -25,6 +27,14 @@
             <td><%= personaje.habilidad_especial.titleize %></td>
             <td><%= personaje.raza_personaje.descripcion %></td>
             <td><%= personaje.tipo_personaje.descripcion %></td>
+            <td><%= personaje.public_status %></td>
+            <td>
+                <% if personaje.publico_public_status? %>
+                    <%= link_to "Cambiar a privado", personaje:{public_status: 0}, method: :put %>
+                <% else %>
+                    <%= link_to "Cambiar a público", personaje:{public_status: 1}, method: :put %>
+                <% end %>
+            </td>
             <td><%= link_to 'Ver', personaje %></td>
             <td><%= link_to 'Editar', edit_personaje_path(personaje) %></td>
             <td><%= link_to 'Eliminar', personaje, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
