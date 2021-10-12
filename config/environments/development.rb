@@ -85,4 +85,6 @@ Rails.application.configure do
       ssl: true
 
   }
+
+  config.active_storage.service = :local
 end

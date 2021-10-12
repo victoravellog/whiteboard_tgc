@@ -16,6 +16,7 @@
     <tbody>
         <% @personajes.each do |personaje| %>
         <tr>
+            <td><%= personaje.nombre %></td>
             <td><%= personaje.poder %></td>
             <td><%= personaje.ataque %></td>
             <td><%= personaje.defensa %></td>
