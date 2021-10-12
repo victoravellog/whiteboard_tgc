@@ -1,4 +1,5 @@
 class Personaje < ApplicationRecord
+
   enum habilidad_especial: {
     resistencia_al_fuego: 0, 
     resistencia_al_frío: 1, 
@@ -27,6 +28,9 @@ class Personaje < ApplicationRecord
   belongs_to :raza_personaje
   belongs_to :user, optional: true
 
+  extend FriendlyId
+  friendly_id :nombre
+    
   def puntos_por_personaje_validator
     suma_puntaje = poder+ataque+defensa+carisma+espiritu
     errors.add(:base, "La suma de los puntajes no puede superar los 2000 puntos, el personaje está excedido en #{suma_puntaje-2000} puntos.") if suma_puntaje > 2000

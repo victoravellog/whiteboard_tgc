@@ -43,5 +43,10 @@
   <%= @personaje.tipo_personaje.descripcion %>
 </p>
 
+<p>
+  <strong>Permalink:</strong>
+  <%= "http://#{request.host}:#{request.port}#{request.fullpath}" %>
+</p>
+
 <%= link_to 'Edit', edit_personaje_path(@personaje) %> |
 <%= link_to 'Back', personajes_path %>
