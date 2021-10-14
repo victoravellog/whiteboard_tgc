@@ -75,11 +75,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
-      port:                  465,
-      domain:               'gmail.com',
-      user_name:            'victoravellog',
-      password:             'password',
+      address:              Rails.application.credentials.email[:address],
+      port:                 Rails.application.credentials.email[:port],
+      domain:               'mail.google.com',
+      user_name:            Rails.application.credentials.email[:username],
+      password:             Rails.application.credentials.email[:password],
       authentication:       'plain',
       enable_starttls_auto: true,
       ssl: true

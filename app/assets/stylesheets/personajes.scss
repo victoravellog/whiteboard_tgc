@@ -1,3 +1,54 @@
 // Place all the styles related to the personajes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import url('http://fonts.cdnfonts.com/css/new-rocker');
+$enable-responsive-font-sizes: true;
+
+container { border: 2px solid #eee;
+}
+
+.container {border: 2px solid #eee;
+}
+
+
+#card {
+  font-style: italic;
+  padding: 1em;
+}
+.animal-info {
+border: 2px solid #eee;
+}
+ul {list-style: none;
+  padding: 1em;
+}
+li span { font-weight: bold;
+}
+
+img {
+    width: 100%;
+    border: 2px solid #eee;
+    height: auto;
+}
+#summary{
+  padding: 1em;
+}
+
+div#container {
+    padding: 20px;
+    margin: 50px;
+    border: 3px solid #eee;
+    box-shadow: 0px 10px 10px 10px #eee;
+}
+h1{margin-top:0;}
+
+.top-right-card {
+    font-size: 20px;
+    font-family: 'New Rocker', sans-serif;
+    white-space: nowrap;
+}
+
+.subtitle-card {
+    font-size: 20px;
+    font-family: 'New Rocker', sans-serif;
+    white-space: nowrap;
+}

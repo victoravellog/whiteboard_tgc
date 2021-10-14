@@ -1,52 +1,78 @@
-<p>
-  <strong>Nombre:</strong>
-  <%= @personaje.nombre %>
-</p>
+<%= stylesheet_link_tag params[:controller] %>
+<div id="container">
+  <div class="row">
+    <div class="col-9">
+      <h1><%= @personaje.nombre %></h1>
+    </div>
+    <div class="col-3 top-right-card">
+      <span>Tipo:</span>
+      <%= @personaje.tipo_personaje.descripcion %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 subtitle-card">
+      <span>Raza:</span>
+      <%= @personaje.raza_personaje.descripcion %>
+    </div>
+  </div>
+  
+  <%= image_tag url_for(@personaje.imagen) %>
+  <div class="animal-info">
+    <div id="card">
+      <p id="interesting-fact">
+        <strong><%= @personaje.historia %></strong>
+      </p>
+      <ul id="facts">
+        <li>
+          <span>Poder:</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped " role="progressbar" style="width: <%= (100*@personaje.poder.to_i)/1000%>%" aria-valuenow=<%= (100*@personaje.poder.to_i)/1000%> aria-valuemin="0" aria-valuemax="1000"><%= @personaje.poder%></div>
+          </div>
+        </li>
 
-<p>
-  <strong>Poder:</strong>
-  <%= @personaje.poder %>
-</p>
+        <li>
+          <span>Ataque:</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= (100*@personaje.ataque.to_i)/1000%>%" aria-valuenow=<%= (100*@personaje.ataque.to_i)/1000%> aria-valuemin="0" aria-valuemax="1000"><%= @personaje.ataque%></div>
+          </div>
+        </li>
 
-<p>
-  <strong>Ataque:</strong>
-  <%= @personaje.ataque %>
-</p>
+        <li>
+          <span>Defensa:</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= (100*@personaje.defensa.to_i)/1000%>%" aria-valuenow=<%= (100*@personaje.defensa.to_i)/1000%> aria-valuemin="0" aria-valuemax="1000"><%= @personaje.defensa%></div>
+          </div>
+        </li>
 
-<p>
-  <strong>Defensa:</strong>
-  <%= @personaje.defensa %>
-</p>
+        <li>
+          <span>Carisma:</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= (100*@personaje.carisma.to_i)/1000%>%" aria-valuenow=<%= (100*@personaje.carisma.to_i)/1000%> aria-valuemin="0" aria-valuemax="1000"><%= @personaje.carisma%></div>
+          </div>
+        </li>
 
-<p>
-  <strong>Carisma:</strong>
-  <%= @personaje.carisma %>
-</p>
+        <li>
+          <span>Espiritu:</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= (100*@personaje.espiritu.to_i)/1000%>%" aria-valuenow=<%= (100*@personaje.espiritu.to_i)/1000%> aria-valuemin="0" aria-valuemax="1000"><%= @personaje.espiritu%></div>
+          </div>
+        </li>
+        <li>
+          
+        </li>
+      </ul>
 
-<p>
-  <strong>Espiritu:</strong>
-  <%= @personaje.espiritu %>
-</p>
-
-<p>
-  <strong>Habilidad especial:</strong>
-  <%= @personaje.habilidad_especial.titleize %>
-</p>
-
-<p>
-  <strong>Raza:</strong>
-  <%= @personaje.raza_personaje.descripcion %>
-</p>
-
-<p>
-  <strong>Tipo:</strong>
-  <%= @personaje.tipo_personaje.descripcion %>
-</p>
-
-<p>
-  <strong>Permalink:</strong>
+      <div class="row">
+        <div class="col-4">
+          <%= link_to 'Editar', edit_personaje_path(@personaje) %> |
+          <%= link_to 'Volver', personajes_path %>
+        </div>
+        <div class="col-8">
+          <p class="text-right font-weight-bold">Habilidad especial: <%= @personaje.habilidad_especial.humanize %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span>Permalink:</span>
   <%= "http://#{request.host}:#{request.port}#{request.fullpath}" %>
-</p>
-
-<%= link_to 'Edit', edit_personaje_path(@personaje) %> |
-<%= link_to 'Back', personajes_path %>
+</div>

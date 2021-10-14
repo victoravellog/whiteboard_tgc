@@ -4,10 +4,10 @@ RSpec.describe "tipo_personajes/index", type: :view do
   before(:each) do
     assign(:tipo_personajes, [
       TipoPersonaje.create!(
-        descripcion: "Descripcion"
+        Descripción: "Descripcion"
       ),
       TipoPersonaje.create!(
-        descripcion: "Descripcion"
+        Descripción: "Descripcion"
       )
     ])
   end

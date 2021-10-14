@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "tipo_personajes/edit", type: :view do
   before(:each) do
     @tipo_personaje = assign(:tipo_personaje, TipoPersonaje.create!(
-      descripcion: "MyString"
+      Descripción: "MyString"
     ))
   end
 

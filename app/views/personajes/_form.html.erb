@@ -1,72 +1,158 @@
 <%= form_with(model: personaje) do |form| %>
-  <% if personaje.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(personaje.errors.count, "error") %> prohíben que el personaje sea guardado:</h2>
 
-      <ul>
-        <% personaje.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<% if personaje.errors.full_messages_for(:base).count > 0 %>
+  <div class="alert alert-danger">
+      <% personaje.errors.full_messages_for(:base).each do |error_message| %>
+        <%= error_message %>
+      <% end %>
     </div>
-  <% end %>
+<% end %> 
 
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
+
+  <% invalid = personaje.errors.include?(:nombre) %>
+  <div class="mb-3 form-group">
+    <%= form.label :nombre, class: "form-label" %>
+    <%= form.text_field :nombre, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:nombre).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :historia %>
-    <%= form.text_area :historia, rows: 5 %>
+  <% invalid = personaje.errors.include?(:historia) %>
+  <div class="mb-3 form-group">
+    <%= form.label :historia, class: "form-label" %>
+    <%= form.text_area :historia, rows: 5, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:historia).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :imagen %>
-    <%= form.file_field :imagen %>
+  <% invalid = personaje.errors.include?(:imagen) %>
+  <div class="mb-3 form-group">
+    <%= form.label :imagen, class: "form-label" %>
+    <%= form.file_field :imagen, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:imagen).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :poder %>
-    <%= form.number_field :poder %>
+  <% invalid = personaje.errors.include?(:poder) %>
+  <div class="mb-3 form-group">
+    <%= form.label :poder, class: "form-label" %>
+    <%= form.number_field :poder, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:poder).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :ataque %>
-    <%= form.number_field :ataque %>
+  <% invalid = personaje.errors.include?(:ataque) %>
+  <div class="mb-3 form-group">
+    <%= form.label :ataque, class: "form-label" %>
+    <%= form.number_field :ataque, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:ataque).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :defensa %>
-    <%= form.number_field :defensa %>
+  <% invalid = personaje.errors.include?(:defensa) %>
+  <div class="mb-3 form-group">
+    <%= form.label :defensa, class: "form-label" %>
+    <%= form.number_field :defensa, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:defensa).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :carisma %>
-    <%= form.number_field :carisma %>
+  <% invalid = personaje.errors.include?(:carisma) %>
+  <div class="mb-3 form-group">
+    <%= form.label :carisma, class: "form-label" %>
+    <%= form.number_field :carisma, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:carisma).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :espiritu %>
-    <%= form.number_field :espiritu %>
+  <% invalid = personaje.errors.include?(:espiritu) %>
+  <div class="mb-3 form-group">
+    <%= form.label :espiritu, class: "form-label" %>
+    <%= form.number_field :espiritu, class: "form-control #{'is-invalid' if invalid}" %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:espiritu).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :habilidad_especial %>
-    <%= form.select(:habilidad_especial, options_for_select(Personaje.habilidad_especials.map {|key, value| [key.humanize, key]}, personaje.habilidad_especial),{prompt: true}) %>
+  <% invalid = personaje.errors.include?(:habilidad_especial) %>
+  <div class="mb-3 form-group">
+    <%= form.label :habilidad_especial, class: "form-label" %>
+    <%= form.select(:habilidad_especial, options_for_select(Personaje.habilidad_especials.map {|key, value| [key.humanize, key]}, personaje.habilidad_especial),{prompt: true}, class: "form-select #{'is-invalid' if invalid}") %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:habilidad_especial).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :raza_personaje %>
-    <%= form.collection_select(:raza_personaje_id, @razas, :id, :descripcion, prompt: true) %>
+  <% invalid = personaje.errors.include?(:raza_personaje) %>
+  <div class="mb-3 form-group">
+    <%= form.label :raza_personaje, class: "form-label" %>
+    <%= form.collection_select(:raza_personaje_id, @razas, :id, :descripcion, options = {:prompt => 'Seleccione una opción'}, html_options = { class: "form-select #{'is-invalid' if invalid}" }) %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:raza_personaje_id).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :tipo_personaje %>
-    <%= form.collection_select(:tipo_personaje_id, @tipos, :id, :descripcion, prompt: true) %>
+  <% invalid = personaje.errors.include?(:tipo_personaje) %>
+  <div class="mb-3 form-group">
+    <%= form.label :tipo_personaje, class: "form-label" %>
+    <%= form.collection_select(:tipo_personaje_id, @tipos, :id, :descripcion, options = {:prompt => 'Seleccione una opción'}, html_options = { class: "form-select #{'is-invalid' if invalid}" }) %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% personaje.errors.full_messages_for(:tipo_personaje_id).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Crear personaje" %>
+    <%= form.submit "Guardar personaje", class: "btn btn-success" %>
   </div>
 <% end %>

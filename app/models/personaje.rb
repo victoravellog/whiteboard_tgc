@@ -17,15 +17,16 @@ class Personaje < ApplicationRecord
 
   has_one_attached :imagen
 
-  validates :poder, presence: true, :inclusion => 100..1000
-  validates :ataque, presence: true, :inclusion => 100..1000
-  validates :defensa, presence: true, :inclusion => 100..1000
-  validates :carisma, presence: true, :inclusion => 100..1000
-  validates :espiritu, presence: true, :inclusion => 100..1000
+  validates :poder, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :ataque, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :defensa, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :carisma, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :espiritu, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
   validates :nombre, presence: :true, uniqueness:  true
   validates :historia, presence: :true
+  validates :imagen, presence: :true
 
-  validate :puntos_por_personaje_validator
+  validate :puntos_por_personaje_validator, if: [:poder, :ataque, :defensa, :carisma, :espiritu] 
 
 
   belongs_to :tipo_personaje
