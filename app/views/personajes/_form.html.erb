@@ -8,19 +8,22 @@
     </div>
 <% end %> 
 
-
   <% invalid = personaje.errors.include?(:nombre) %>
-  <div class="mb-3 form-group">
-    <%= form.label :nombre, class: "form-label" %>
-    <%= form.text_field :nombre, class: "form-control #{'is-invalid' if invalid}" %>
-    <% if invalid %>
-      <div class="invalid-feedback d-block">
-        <% personaje.errors.full_messages_for(:nombre).each do |error_message| %>
-          <%= error_message %>.
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <% if personaje.nombre.nil? or invalid %>
+    <div class="mb-3 form-group">
+      <%= form.label :nombre, class: "form-label" %>
+      <%= form.text_field :nombre, class: "form-control #{'is-invalid' if invalid}" %>
+      <% if invalid %>
+        <div class="invalid-feedback d-block">
+          <% personaje.errors.full_messages_for(:nombre).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h3>Nombre: <%= personaje.nombre %></h3>
+  <% end %>
 
   <% invalid = personaje.errors.include?(:historia) %>
   <div class="mb-3 form-group">
