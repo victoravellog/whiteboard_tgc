@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag params[:controller] %>
 <h1>Personajes</h1>
 <% if !user_signed_in? and @personajes.empty? %>
   <%= render "visitor_token_form" %>

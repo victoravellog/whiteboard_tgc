@@ -18,7 +18,7 @@ RSpec.describe "/tipo_personajes", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
-      descripcion: "Orco"
+      Descripción: "Orco"
     }
   }
 
@@ -26,7 +26,7 @@ RSpec.describe "/tipo_personajes", type: :request do
 
   let(:invalid_attributes) {
     {
-      descripcion: ""
+      Descripción: ""
     }
   }
 
@@ -94,7 +94,7 @@ RSpec.describe "/tipo_personajes", type: :request do
     context "with valid parameters" do 
       let(:new_attributes) {
         {
-          descripcion: "Resistencia al veneno"
+          Descripción: "Resistencia al veneno"
         }
       }
 

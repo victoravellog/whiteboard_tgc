@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_005542) do
+ActiveRecord::Schema.define(version: 2021_10_12_012450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_10_12_005542) do
     t.text "historia"
     t.string "nombre"
     t.string "slug"
+    t.integer "public_status", default: 1
     t.index ["habilidad_especial_id"], name: "index_personajes_on_habilidad_especial_id"
     t.index ["raza_personaje_id"], name: "index_personajes_on_raza_personaje_id"
     t.index ["tipo_personaje_id"], name: "index_personajes_on_tipo_personaje_id"

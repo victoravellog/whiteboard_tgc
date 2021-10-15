@@ -11,6 +11,20 @@ class PersonajesController < ApplicationController
 
   # GET /personajes/1 or /personajes/1.json
   def show
+    if !user_signed_in?
+      respond_to do |format|
+        if @personaje.privado_public_status?
+          format.html { render plain: "404 Not Found", status: 404 }
+          format.json { render json: @personaje,
+            adapter: :json_api,
+            serializer: ActiveModel::Serializer::ErrorSerializer,
+            status: :not_found }
+        else
+          format.html { redirect_to @personaje }
+          format.json { render json: serializer.new(@personaje).as_json(except: [:id]), include: [:raza_personaje, :tipo_personaje] } 
+        end
+      end
+    end
   end
 
   # GET /personajes/new
@@ -74,6 +88,9 @@ class PersonajesController < ApplicationController
     end
   end
   
+  def serializer
+    PersonajeSerializer
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -88,6 +105,6 @@ class PersonajesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def personaje_params
-      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id, :visitor_token, :nombre, :imagen, :historia)
+      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id, :visitor_token, :nombre, :imagen, :historia, :public_status)
     end
 end

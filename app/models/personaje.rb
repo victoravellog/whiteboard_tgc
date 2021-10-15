@@ -8,20 +8,25 @@ class Personaje < ApplicationRecord
     movimiento_acelerado: 4, 
     crecimiento_acelerado: 5, 
     invocación_de_familiar: 6
-  }, _prefix: true
+  }, _prefix: :habilidad
+
+  enum public_status: {
+    privado: 0, 
+    publico: 1
+  }, _suffix: true
 
   has_one_attached :imagen
 
-  validates :poder, presence: true, :inclusion => 100..1000
-  validates :ataque, presence: true, :inclusion => 100..1000
-  validates :defensa, presence: true, :inclusion => 100..1000
-  validates :carisma, presence: true, :inclusion => 100..1000
-  validates :espiritu, presence: true, :inclusion => 100..1000
-  validates :habilidad_especial, inclusion: { in: habilidad_especials.keys }
+  validates :poder, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :ataque, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :defensa, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :carisma, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :espiritu, presence: true, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
   validates :nombre, presence: :true, uniqueness:  true
   validates :historia, presence: :true
+  validates :imagen, presence: :true
 
-  validate :puntos_por_personaje_validator
+  validate :puntos_por_personaje_validator, if: [:poder, :ataque, :defensa, :carisma, :espiritu] 
 
 
   belongs_to :tipo_personaje

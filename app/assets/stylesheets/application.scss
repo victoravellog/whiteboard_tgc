@@ -13,9 +13,9 @@
  */
  
 // Graphical variables
-@import "config/fonts";
-@import "config/colors";
-@import "config/bootstrap_variables";
+// @import "config/fonts";
+// @import "config/colors";
+// @import "config/bootstrap_variables";
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
@@ -23,7 +23,22 @@
 // CSS partials
 @import "components/index";
 
-html,body{height:100%;margin:0;padding:0;}
-.container-fluid,.row{height:100%;}
-.board-container{padding:40px;box-sizing:border-box}
-.board{background-color:red;height:100%;padding:40px;}
+html, body{
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+.container-fluid,.row{
+    height:100%;
+}
+
+.board-container{
+    padding:40px;
+    box-sizing:border-box
+}
+.board{
+    background-color:red;
+    height:100%;
+    padding:40px;
+}
