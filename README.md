@@ -1,24 +1,23 @@
-# README
+# Whiteboard-tgc
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
 
-Things you may want to cover:
+## Especificaciones
 
 * Ruby version
+    = 3.0.2
 
-* System dependencies
+* Rails version
+    = 6.1.4
 
-* Configuration
+* Configuración e instalación
+    1. Clonar repositorio
+    2. Instalar Docker Desktop (Engine para Linux)
+        - [Mac](https://docs.docker.com/desktop/mac/install/)
+        - [Windows](https://docs.docker.com/desktop/windows/install/)
+        - [Linux](https://docs.docker.com/engine/install/)
+    3. Ejecutar en shell `docker compose up -d --build`
 
-* Database creation
+## Pasos finales
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Luego de configurar e instalar todo lo necesario acceda al aplicativo a través de [http://localhost:3000](http://localhost:3000)
