@@ -44,10 +44,13 @@ class PersonajesController < ApplicationController
     respond_to do |format|
       if @personaje.save
         format.html { redirect_to @personaje, notice: "Personaje exitosamente creado#{ ', por favor guarde este código para que pueda ver su personaje en el futuro: '+@personaje.visitor_token if @personaje.visitor_token }." }
-        format.json { render :show, status: :created, location: @personaje }
+        format.json { render json: { url_personaje: "http://#{request.host}:#{request.port}#{request.fullpath}" }, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @personaje.errors, status: :unprocessable_entity }
+        format.json { render json: @personaje,
+          adapter: :json_api,
+          serializer: ActiveModel::Serializer::ErrorSerializer,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -105,6 +108,7 @@ class PersonajesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def personaje_params
-      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id, :visitor_token, :nombre, :imagen, :historia, :public_status)
+      params.require(:personaje).permit(:poder, :ataque, :defensa, :carisma, :espiritu, :habilidad_especial, :raza_personaje_id, :tipo_personaje_id, :visitor_token, :nombre, :imagen, :historia, :public_status) ||
+      ActionController::Parameters.new
     end
 end
