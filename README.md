@@ -33,5 +33,5 @@ Luego de configurar e instalar todo lo necesario acceda al aplicativo a través 
 
 Ejecutar comando dentro de carpeta del proyecto para ejecutar tests. 
 ```
-docker-compose run web rspec.
+docker compose run web rspec.
 ```
