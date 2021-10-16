@@ -17,7 +17,7 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
         - [Windows](https://docs.docker.com/desktop/windows/install/)
         - [Linux](https://docs.docker.com/engine/install/)
     3. Ejecutar comandos dentro de carpeta del proyecto para construir y disponibilizar Docker. 
-        ```
+        ```bash
         docker compose build # Construye las imágenes.
         docker compose up -d # Carga el aplicativo.
         docker compose run web yarn install # Instala dependencias para front.
@@ -33,7 +33,7 @@ Luego de configurar e instalar todo lo necesario acceda al aplicativo a través 
 
 Para enviar correos (ej. Recuperación de contraseña), se debe descomentar las siguientes líneas en `config/development.rb` y setear las credenciales del correo de envío, o bien crear los secretos necesarios para su funcionamiento con `rails credentials:edit` dentro del contenedor `web`.
 
-````
+```ruby
 config.action_mailer.perform_deliveries = true
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.delivery_method = :smtp
@@ -53,6 +53,6 @@ config.action_mailer.smtp_settings = {
 ## Test
 
 Ejecutar comando dentro de carpeta del proyecto para ejecutar tests. 
-```
+```bash
 docker compose run web rspec
 ```
