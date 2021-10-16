@@ -14,11 +14,11 @@ require 'rails_helper'
 
 RSpec.describe "/raza_personajes", type: :request do
   
-  # HabilidadEspecial. As you add validations to HabilidadEspecial, be sure to
+  # RazaPersonaje. As you add validations to RazaPersonaje, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
-      Descripción: "Orco"
+      descripcion: "Orco"
     }
   }
 
@@ -26,13 +26,13 @@ RSpec.describe "/raza_personajes", type: :request do
 
   let(:invalid_attributes) {
     {
-      Descripción: ""
+      descripcion: ""
     }
   }
 
   describe "GET /index" do
     it "renders a successful response" do
-      HabilidadEspecial.create! valid_attributes
+      RazaPersonaje.create! valid_attributes
       get raza_personajes_url
       expect(response).to be_successful
     end
@@ -62,24 +62,24 @@ RSpec.describe "/raza_personajes", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       subject { post raza_personajes_url, params: { raza_personaje: valid_attributes } }
-      it "creates a new HabilidadEspecial" do
+      it "creates a new RazaPersonaje" do
         expect {
           subject
-        }.to change(HabilidadEspecial, :count).by(1)
+        }.to change(RazaPersonaje, :count).by(1)
       end
 
       it "redirects to the created raza_personaje" do
         subject
-        expect(response).to redirect_to(raza_personaje_url(HabilidadEspecial.last))
+        expect(response).to redirect_to(raza_personaje_url(RazaPersonaje.last))
       end
     end
 
     context "with invalid parameters" do
       subject { post raza_personajes_url, params: { raza_personaje: invalid_attributes } }
-      it "does not create a new HabilidadEspecial" do
+      it "does not create a new RazaPersonaje" do
         expect {
           subject
-        }.to change(HabilidadEspecial, :count).by(0)
+        }.to change(RazaPersonaje, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
@@ -94,7 +94,7 @@ RSpec.describe "/raza_personajes", type: :request do
     context "with valid parameters" do 
       let(:new_attributes) {
         {
-          Descripción: "Resistencia al veneno"
+          descripcion: "Resistencia al veneno"
         }
       }
 
@@ -125,7 +125,7 @@ RSpec.describe "/raza_personajes", type: :request do
       raza_personaje
       expect {
         subject
-      }.to change(HabilidadEspecial, :count).by(-1)
+      }.to change(RazaPersonaje, :count).by(-1)
     end
 
     it "redirects to the raza_personajes list" do

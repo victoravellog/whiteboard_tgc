@@ -24,34 +24,34 @@ RSpec.describe "/personajes", type: :request do
     skip("Add a hash of attributes invalid for your model")
   }
 
+  let(:personaje) { create :personaje }
+
   describe "GET /index" do
     it "renders a successful response" do
       Personaje.create! valid_attributes
       get personajes_url
-      expect(response).to be_successful
+      expect(response).to have_http_status :ok
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      personaje = Personaje.create! valid_attributes
       get personaje_url(personaje)
-      expect(response).to be_successful
+      expect(response).to have_http_status :found
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
       get new_personaje_url
-      expect(response).to be_successful
+      expect(response).to have_http_status :ok
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      personaje = Personaje.create! valid_attributes
       get edit_personaje_url(personaje)
-      expect(response).to be_successful
+      expect(response).to have_http_status :ok
     end
   end
 
@@ -78,7 +78,7 @@ RSpec.describe "/personajes", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post personajes_url, params: { personaje: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status :ok
       end
     end
   end
@@ -90,15 +90,13 @@ RSpec.describe "/personajes", type: :request do
       }
 
       it "updates the requested personaje" do
-        personaje = Personaje.create! valid_attributes
-        patch personaje_url(personaje), params: { personaje: new_attributes }
+          patch personaje_url(personaje), params: { personaje: new_attributes }
         personaje.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the personaje" do
-        personaje = Personaje.create! valid_attributes
-        patch personaje_url(personaje), params: { personaje: new_attributes }
+          patch personaje_url(personaje), params: { personaje: new_attributes }
         personaje.reload
         expect(response).to redirect_to(personaje_url(personaje))
       end
@@ -106,23 +104,21 @@ RSpec.describe "/personajes", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        personaje = Personaje.create! valid_attributes
-        patch personaje_url(personaje), params: { personaje: invalid_attributes }
-        expect(response).to be_successful
+          patch personaje_url(personaje), params: { personaje: invalid_attributes }
+        expect(response).to have_http_status :ok
       end
     end
   end
 
   describe "DELETE /destroy" do
     it "destroys the requested personaje" do
-      personaje = Personaje.create! valid_attributes
+      personaje
       expect {
         delete personaje_url(personaje)
       }.to change(Personaje, :count).by(-1)
     end
 
     it "redirects to the personajes list" do
-      personaje = Personaje.create! valid_attributes
       delete personaje_url(personaje)
       expect(response).to redirect_to(personajes_url)
     end

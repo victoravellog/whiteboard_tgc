@@ -13,7 +13,7 @@ RSpec.describe TipoPersonaje, type: :model do
     it 'has an invalid descripcion' do
       tipo_personaje.descripcion = ''
       expect(tipo_personaje).not_to be_valid
-      expect(tipo_personaje.errors[:descripcion]).to include("can't be blank")
+      expect(tipo_personaje.errors[:descripcion]).to include("no puede estar en blanco")
     end
   end
 end

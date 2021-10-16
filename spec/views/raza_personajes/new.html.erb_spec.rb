@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "raza_personajes/new", type: :view do
   before(:each) do
     assign(:raza_personaje, RazaPersonaje.new(
-      Descripción: "MyString"
+      descripcion: "MyString"
     ))
   end
 
