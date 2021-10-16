@@ -19,7 +19,7 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
     3. Ejecutar comandos dentro de carpeta del proyecto para construir y disponibilizar Docker. 
         ```
         docker compose build # Construye las imágenes.
-        docker compose up # Carga el aplicativo.
+        docker compose up -d # Carga el aplicativo.
         docker compose run web yarn install # Instala dependencias para front.
         docker compose run web rails db:create # Crea las bases de datos.
         docker compose run web rails db:migrate # Ejecuta las migraciones necesarias.
