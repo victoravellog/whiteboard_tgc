@@ -19,7 +19,7 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
     3. Ejecutar comandos dentro de carpeta del proyecto para construir y disponibilizar Docker. 
         ```
         docker compose build # Construye las imágenes.
-        docker compose up # Carga el aplicativo.
+        docker compose up -d # Carga el aplicativo.
         docker compose run web yarn install # Instala dependencias para front.
         docker compose run web rails db:create # Crea las bases de datos.
         docker compose run web rails db:migrate # Ejecuta las migraciones necesarias.
@@ -29,9 +29,30 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
 
 Luego de configurar e instalar todo lo necesario acceda al aplicativo a través de [http://localhost:3000](http://localhost:3000)
 
+##  Envío de correos
+
+Para enviar correos (ej. Recuperación de contraseña), se debe descomentar las siguientes líneas en `config/development.rb` y setear las credenciales del correo de envío, o bien crear los secretos necesarios para su funcionamiento con `rails credentials:edit` dentro del contenedor `web`.
+
+````
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+    address:              Rails.application.credentials.email[:address],
+    port:                 Rails.application.credentials.email[:port],
+    domain:               'mail.google.com',
+    user_name:            Rails.application.credentials.email[:username],
+    password:             Rails.application.credentials.email[:password],
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    ssl: true
+}
+```
+
+
 ## Test
 
 Ejecutar comando dentro de carpeta del proyecto para ejecutar tests. 
 ```
-docker compose run web rspec.
+docker compose run web rspec
 ```
