@@ -16,16 +16,23 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
         - [Mac](https://docs.docker.com/desktop/mac/install/)
         - [Windows](https://docs.docker.com/desktop/windows/install/)
         - [Linux](https://docs.docker.com/engine/install/)
-    3. Ejecutar comandos para construir y disponibilizar Docker. 
+    3. Ejecutar comandos dentro de carpeta del proyecto para construir y disponibilizar Docker. 
         ```
         docker-compose build # Construye las imágenes.
         docker-compose up # Carga el aplicativo.
         docker-compose run web yarn install # Instala dependencias para front.
-        docker-compose run web rake db:create # Crea las bases de datos.
-        docker-compose run web rake db:migrate # Ejecuta las migraciones necesarias.
+        docker-compose run web rails db:create # Crea las bases de datos.
+        docker-compose run web rails db:migrate # Ejecuta las migraciones necesarias.
         ```
     5. Levantar Docker. `docker compose up -d`
 
 ## Pasos finales
 
 Luego de configurar e instalar todo lo necesario acceda al aplicativo a través de [http://localhost:3000](http://localhost:3000)
+
+## Test
+
+Ejecutar comando dentro de carpeta del proyecto para ejecutar tests. 
+```
+docker-compose run web rspec.
+```
