@@ -20,6 +20,7 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
         ```
         docker-compose build # Construye las imágenes.
         docker-compose up # Carga el aplicativo.
+        docker-compose run web yarn install # Instala dependencias para front.
         docker-compose run web rake db:create # Crea las bases de datos.
         docker-compose run web rake db:migrate # Ejecuta las migraciones necesarias.
         ```
