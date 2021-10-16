@@ -11,12 +11,19 @@ Aplicación de colección de cartas (Personajes) para la empresa Whiteboard
     = 6.1.4
 
 * Configuración e instalación
-    1. Clonar repositorio
-    2. Instalar Docker Desktop (Engine para Linux)
+    1. Clonar repositorio.
+    2. Instalar Docker Desktop (Engine para Linux).
         - [Mac](https://docs.docker.com/desktop/mac/install/)
         - [Windows](https://docs.docker.com/desktop/windows/install/)
         - [Linux](https://docs.docker.com/engine/install/)
-    3. Ejecutar en shell `docker compose up -d --build`
+    3. Ejecutar comandos para construir y disponibilizar Docker. 
+        ```
+        docker-compose build # Construye las imágenes.
+        docker-compose up # Carga el aplicativo.
+        docker-compose run web rake db:create # Crea las bases de datos.
+        docker-compose run web rake db:migrate # Ejecuta las migraciones necesarias.
+        ```
+    5. Levantar Docker. `docker compose up -d`
 
 ## Pasos finales
 
